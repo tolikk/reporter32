@@ -1,6 +1,6 @@
 object Private2005Form: TPrivate2005Form
-  Left = 277
-  Top = 118
+  Left = 279
+  Top = 119
   Width = 767
   Height = 536
   Caption = #1057#1090#1088#1072#1093#1086#1074#1072#1085#1080#1077' '#1078#1080#1079#1085#1080' 2005'
@@ -21,7 +21,7 @@ object Private2005Form: TPrivate2005Form
   TextHeight = 13
   object StatusPanel: TPanel
     Left = 0
-    Top = 445
+    Top = 453
     Width = 759
     Height = 37
     Align = alBottom
@@ -74,7 +74,7 @@ object Private2005Form: TPrivate2005Form
     Left = 0
     Top = 0
     Width = 759
-    Height = 445
+    Height = 453
     ActivePage = FilterPage
     Align = alClient
     TabIndex = 1
@@ -267,7 +267,7 @@ object Private2005Form: TPrivate2005Form
         Left = 0
         Top = 0
         Width = 751
-        Height = 417
+        Height = 425
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
@@ -438,7 +438,7 @@ object Private2005Form: TPrivate2005Form
         end
         object DownPanel: TPanel
           Left = 0
-          Top = 277
+          Top = 285
           Width = 751
           Height = 140
           Align = alBottom
@@ -686,7 +686,7 @@ object Private2005Form: TPrivate2005Form
         TabOrder = 0
         DesignSize = (
           751
-          417)
+          425)
         object Label7: TLabel
           Left = 4
           Top = 4
@@ -743,7 +743,7 @@ object Private2005Form: TPrivate2005Form
           Left = 4
           Top = 100
           Width = 733
-          Height = 271
+          Height = 279
           Anchors = [akLeft, akTop, akRight, akBottom]
           DataSource = REPDataSource
           TabOrder = 3
@@ -755,7 +755,7 @@ object Private2005Form: TPrivate2005Form
         end
         object Button2: TButton
           Left = 651
-          Top = 374
+          Top = 382
           Width = 87
           Height = 25
           Anchors = [akRight, akBottom]
@@ -765,7 +765,7 @@ object Private2005Form: TPrivate2005Form
         end
         object IsNumbers: TCheckBox
           Left = 552
-          Top = 378
+          Top = 386
           Width = 97
           Height = 17
           Anchors = [akRight, akBottom]
@@ -774,7 +774,7 @@ object Private2005Form: TPrivate2005Form
         end
         object IsUseFilter: TCheckBox
           Left = 8
-          Top = 380
+          Top = 388
           Width = 141
           Height = 17
           Anchors = [akLeft, akBottom]
