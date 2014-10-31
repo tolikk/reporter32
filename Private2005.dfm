@@ -743,7 +743,7 @@ object Private2005Form: TPrivate2005Form
           Left = 4
           Top = 100
           Width = 733
-          Height = 279
+          Height = 303
           Anchors = [akLeft, akTop, akRight, akBottom]
           DataSource = REPDataSource
           TabOrder = 3
@@ -755,7 +755,7 @@ object Private2005Form: TPrivate2005Form
         end
         object Button2: TButton
           Left = 651
-          Top = 382
+          Top = 406
           Width = 87
           Height = 25
           Anchors = [akRight, akBottom]
@@ -765,7 +765,7 @@ object Private2005Form: TPrivate2005Form
         end
         object IsNumbers: TCheckBox
           Left = 552
-          Top = 386
+          Top = 410
           Width = 97
           Height = 17
           Anchors = [akRight, akBottom]
@@ -774,7 +774,7 @@ object Private2005Form: TPrivate2005Form
         end
         object IsUseFilter: TCheckBox
           Left = 8
-          Top = 388
+          Top = 412
           Width = 141
           Height = 17
           Anchors = [akLeft, akBottom]

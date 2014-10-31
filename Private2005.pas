@@ -169,6 +169,7 @@ type
     { Private declarations }
     listAgCodes : TStringList;
     MSEXCEL : Variant;
+    Section: string;
 
     function GetFilter : string;
     function GetOrder : string;
@@ -179,6 +180,9 @@ type
 var
   Private2005Form: TPrivate2005Form;
   lastAgCode2, lastAgName2 : string;
+
+const
+  Section : string = 'PRIV2014';
 
 procedure Create1CTable(Table1C: TTable; Name : string);
 
@@ -215,11 +219,12 @@ var
     rINI : TRegIniFile;
     str : string;
 begin
-     DMM.HandBookSQL.DatabaseName := Priv2005Database.Name;
+    DMM.HandBookSQL.DatabaseName := Priv2005Database.Name;
     RepDtFrom.Date := Date;
     RepDtTo.Date := Date;
     RepDtFrom.Checked := false;
     RepDtTo.Checked := false;
+    Section := 'PRIV2014';
 
     listAgCodes := TStringList.Create;
     StateCombo.ItemIndex := 0;
@@ -253,8 +258,8 @@ begin
     //Заполним список отчётов
     INI := TIniFile.Create('blreps.ini');
     for i := 1 to 100 do begin
-        if INI.ReadString('PRIVATE2005', 'QueryName' + IntToStr(i), '') <> '' then
-            RepList.Items.Add(INI.ReadString('PRIVATE2005', 'QueryName' + IntToStr(i), ''))
+        if INI.ReadString(Section, 'QueryName' + IntToStr(i), '') <> '' then
+            RepList.Items.Add(INI.ReadString(Section, 'QueryName' + IntToStr(i), ''))
         else
             break;
     end;
@@ -577,8 +582,8 @@ var
 begin
     REPQuery.Close;
     INI := TIniFile.Create('blreps.ini');
-    ParamsText.Hint := INI.ReadString('PRIVATE2005', 'QueryParams' + IntToStr(RepList.ItemIndex + 1), '');
-    ParamsText.Text := INI.ReadString('PRIVATE2005', 'LastParams' + IntToStr(RepList.ItemIndex + 1), '');
+    ParamsText.Hint := INI.ReadString(Section, 'QueryParams' + IntToStr(RepList.ItemIndex + 1), '');
+    ParamsText.Text := INI.ReadString(Section, 'LastParams' + IntToStr(RepList.ItemIndex + 1), '');
     if ParamsText.Text = '' then
         ParamsText.Text := ParamsText.Hint; 
     INI.Free;
@@ -590,7 +595,7 @@ var
 begin
     s := '';
     if IsUseFilter.Checked then s := GetFilter();
-    ExecLittleReport('blreps.ini', 'PRIVATE2005', ParamsText.Text, RepList.ItemIndex + 1, REPQuery, GetFilter());
+    ExecLittleReport('blreps.ini', Section, ParamsText.Text, RepList.ItemIndex + 1, REPQuery, GetFilter());
 end;
 
 procedure TPrivate2005Form.Button2Click(Sender: TObject);
@@ -852,7 +857,7 @@ begin
        //end;
        }
        INI := TIniFile.Create(BLANK_INI);
-       s := INI.ReadString('PRIV2005', key, '');
+       s := INI.ReadString(Section, key, '');
        if s = '' then begin
             INI.Free;
             //if f then List.Delete(List.Count - 1);
@@ -875,7 +880,7 @@ var
 begin
      INI := TIniFile.Create(BLANK_INI);
      if s = '' then s := '0';
-     DecodeAssist := INI.ReadString('PRIV2005', 'Assist' + s, '');
+     DecodeAssist := INI.ReadString(Section, 'Assist' + s, '');
      INI.Free;
 end;
 
@@ -898,7 +903,7 @@ var
      kod : string;
 begin
     INI := TIniFile.Create(BLANK_INI);
-    kod := INI.ReadString('PRIV2005', 'Country' + s + '_' + sum + '_' + cur, '?');
+    kod := INI.ReadString(Section, 'Country' + s + '_' + sum + '_' + cur, '?');
     INI.Free;
     if kod = '?' then
         raise Exception.Create('Не указан код вида ' + s + '_' + sum + '_' + cur + ' в ГЛОБО ');
@@ -911,7 +916,7 @@ var
     kod : string;
 begin
     INI := TIniFile.Create(BLANK_INI);
-    kod := INI.ReadString('PRIV2005', 'Seria_' + s + '_KOD', '?');
+    kod := INI.ReadString(Section, 'Seria_' + s + '_KOD', '?');
     INI.Free;
     if kod = '?' then
         raise Exception.Create('Не указан код серии бланка ' + kod + ' в ГЛОБО ');
@@ -1370,7 +1375,7 @@ begin
 
     if not IsError then begin
         INI := TIniFile.Create(BLANK_INI);
-        INI.WriteString('PRIV2005', 'UnloadNumber', UnloadN);
+        INI.WriteString(Section, 'UnloadNumber', UnloadN);
         INI.Free;
         MessageDlg('Экспорт ' + UnloadN + ' выполнен успешно'#13'Отправь все файлы с расширением ' + InsTypeCode + ' в каталоге ' + path + ' в дирекцию', mtInformation, [mbOk], 0);
         ShellExecute(0, 'open', StrPCopy(pbuff, path), 0, 0, SW_SHOWNORMAL);
